@@ -35,12 +35,15 @@ func ExampleMap() {
 		Name    string
 		ID      int32
 		Enabled bool
+		Time    time.Time
 	}
 
+	timestamp := int64(1618825953)
 	s := &Server{
 		Name:    "Arslan",
 		ID:      123456,
 		Enabled: true,
+		Time: time.Unix(timestamp, 0),
 	}
 
 	m := Map(s)
@@ -48,10 +51,13 @@ func ExampleMap() {
 	fmt.Printf("%#v\n", m["Name"])
 	fmt.Printf("%#v\n", m["ID"])
 	fmt.Printf("%#v\n", m["Enabled"])
+	fmt.Printf("%#v\n", m["Time"])
+
 	// Output:
 	// "Arslan"
 	// 123456
 	// true
+	// 1618825953
 
 }
 

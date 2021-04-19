@@ -3,6 +3,7 @@ package structs
 
 import (
 	"fmt"
+	"time"
 
 	"reflect"
 )
@@ -516,6 +517,11 @@ func (s *Struct) nested(val reflect.Value) interface{} {
 
 	switch v.Kind() {
 	case reflect.Struct:
+		if reflect.TypeOf(val.Interface()).String() == "time.Time" {
+			finalVal = v.Interface().(time.Time).Unix()
+			break
+		}
+
 		n := New(val.Interface())
 		n.TagName = s.TagName
 		m := n.Map()
